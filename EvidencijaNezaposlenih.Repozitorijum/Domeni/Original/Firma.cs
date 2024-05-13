@@ -17,3 +17,4 @@ namespace EvidencijaNezaposlenih.Repozitorijum.Domeni.Original
         public string OdgovornoLice {  get; set; }
     }
 }
+//Padajuci cb-naziv firme, pored dat pocetka/kraja ispod toga plus dugme koje kopira gornji red.
