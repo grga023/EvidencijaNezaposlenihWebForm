@@ -52,8 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domeni\Context\Context.cs" />
+    <Compile Include="Domeni\DTO\NezaposleniDodajFirma.cs" />
     <Compile Include="Domeni\DTO\FirmaPrikaz.cs" />
     <Compile Include="Domeni\DTO\NezaposleniPogled.cs" />
+    <Compile Include="Domeni\DTO\NezposleniDodaj.cs" />
     <Compile Include="Domeni\Original\Firma.cs" />
     <Compile Include="Domeni\Original\Korisnik.cs" />
     <Compile Include="Domeni\Original\Nezaposleni.cs" />

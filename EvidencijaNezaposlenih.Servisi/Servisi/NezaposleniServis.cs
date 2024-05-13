@@ -12,21 +12,21 @@ namespace EvidencijaNezaposlenih.Servisi.Servisi
 {
     public class NezaposleniServis : INezaposleniServis
     {
-        private readonly INezaposleniRepozitorijum _repozitorijum;
+        private readonly INezaposleniRepozitorijum _nezaposleniRepozitorijum;
 
-        public NezaposleniServis(INezaposleniRepozitorijum repo)
+        public NezaposleniServis(INezaposleniRepozitorijum nezaposleniRepozitorijum)
         {
-            _repozitorijum = repo;
+            _nezaposleniRepozitorijum = nezaposleniRepozitorijum;
         }
 
         public Task<Nezaposleni> DajPoId(object PK)
         {
-            return _repozitorijum.DajPoId(PK);
+            throw new NotImplementedException();
         }
 
         public Task<IEnumerable<Nezaposleni>> DajSveAsync()
         {
-            return _repozitorijum.DajSveAsync();
+            throw new NotImplementedException();
         }
 
         private string GenerisiRandomID()
@@ -57,43 +57,70 @@ namespace EvidencijaNezaposlenih.Servisi.Servisi
 
             return billNumber;
         }
-
-        public Task<Nezaposleni> Dodaj(Nezaposleni obj)
+        public async Task Dodaj(NezposleniDodaj obj)
         {
-            string ID_N = GenerisiRandomID();
+            var ID_N = GenerisiRandomID();
+            var nezaposlni = await _nezaposleniRepozitorijum.DajPoId(ID_N);
 
-            if (_repozitorijum.DajPoId(ID_N) != null)
-                throw new ArgumentException("Existing");
+            if (nezaposlni == null)
+                throw new ArgumentException("System error try again");
 
-            foreach(var firma in obj.RadniOdnos)
+            Nezaposleni nezaposleniZaDodati = new Nezaposleni
+            {
+                ID_N = ID_N,
+                Adresa = obj.Adresa,
+                BrojTelefona = obj.BrojTelefona,
+                DatumRodjenja = obj.DatumRodjenja,
+                Ime = obj.Ime,
+                Prezime = obj.Prezime
+            };
 
-            obj.ID_N = GenerisiRandomID();
-            return _repozitorijum.Dodaj(obj);
+            List<RadniOdnos> radniOdnosi = new List<RadniOdnos>();
+
+            foreach (var item in obj.NezaposleniDodajFirma)
+            {
+                radniOdnosi.Add(new RadniOdnos
+                {
+                    ID_N = ID_N,
+                    PIB = item.PIB,
+                    DatumPocetka = item.datumPocetka,
+                    DatumZavrsetka = item.datumZavrsetka
+                });
+            }
+
+            nezaposleniZaDodati.RadniOdnos = radniOdnosi;
+            await _nezaposleniRepozitorijum.Dodaj(nezaposleniZaDodati);
+            _nezaposleniRepozitorijum.Sacuvaj();
         }
 
         public Nezaposleni Izmeni(Nezaposleni obj)
         {
-            return _repozitorijum.Izmeni(obj);
+            throw new NotImplementedException();
         }
 
         public Task<Nezaposleni> Obrisi(object PK)
         {
-            return _repozitorijum.Obrisi(PK);
+            throw new NotImplementedException();
         }
 
         public List<NezaposleniPogled> PrikaziPoViewu(string nazivViewa)
         {
-            return _repozitorijum.PrikaziPoViewu(nazivViewa);
+            throw new NotImplementedException();
         }
 
         public void Sacuvaj()
         {
-            _repozitorijum.Sacuvaj();
+            throw new NotImplementedException();
         }
 
         public void TrigerujStoredProcedureZaDodavanje(string nazivProcedure, object o)
         {
-            _repozitorijum.TrigerujStoredProcedure(nazivProcedure, o);
+            throw new NotImplementedException();
+        }
+
+        Task INezaposleniServis.DajPoId(object PK)
+        {
+            throw new NotImplementedException();
         }
     }
 }
