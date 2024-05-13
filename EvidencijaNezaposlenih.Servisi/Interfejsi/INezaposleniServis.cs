@@ -10,9 +10,9 @@ namespace EvidencijaNezaposlenih.Servisi.Interfejsi
 {
     public interface INezaposleniServis
     {
-        Task<Nezaposleni> DajPoId(object PK);
+        Task DajPoId(object PK);
         Task<IEnumerable<Nezaposleni>> DajSveAsync();
-        Task<Nezaposleni> Dodaj(Nezaposleni obj);
+        Task Dodaj(NezposleniDodaj obj);
         Nezaposleni Izmeni(Nezaposleni obj);
         Task<Nezaposleni> Obrisi(object PK);
         List<NezaposleniPogled> PrikaziPoViewu(string nazivViewa);
