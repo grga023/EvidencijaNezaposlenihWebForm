@@ -43,15 +43,24 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Unity.Abstractions, Version=5.11.7.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.11.10\lib\net48\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.11.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.11.10\lib\net48\Unity.Container.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domeni\Context\Context.cs" />
+    <Compile Include="Domeni\Context\NezaposleniDbContext.cs" />
     <Compile Include="Domeni\DTO\NezaposleniDodajFirma.cs" />
     <Compile Include="Domeni\DTO\FirmaPrikaz.cs" />
     <Compile Include="Domeni\DTO\NezaposleniPogled.cs" />
@@ -63,9 +72,13 @@
     <Compile Include="Interface\IFirmaRepozitorijum.cs" />
     <Compile Include="Interface\INezaposleniRepozitorijum.cs" />
     <Compile Include="Interface\IRepozitorijum.cs" />
-    <Compile Include="Migrations\202405091508412_init.cs" />
-    <Compile Include="Migrations\202405091508412_init.designer.cs">
-      <DependentUpon>202405091508412_init.cs</DependentUpon>
+    <Compile Include="Migrations\202405141525193_init.cs" />
+    <Compile Include="Migrations\202405141525193_init.designer.cs">
+      <DependentUpon>202405141525193_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405141528532_init1.cs" />
+    <Compile Include="Migrations\202405141528532_init1.designer.cs">
+      <DependentUpon>202405141528532_init1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,8 +90,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202405091508412_init.resx">
-      <DependentUpon>202405091508412_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202405141525193_init.resx">
+      <DependentUpon>202405141525193_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405141528532_init1.resx">
+      <DependentUpon>202405141528532_init1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

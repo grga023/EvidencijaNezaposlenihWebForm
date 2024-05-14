@@ -12,9 +12,9 @@ namespace EvidencijaNezaposlenih.Repozitorijum.Repozitorijumi
 {
     public class FirmaRepozitorijum : IFirmaRepozitorijum
     {
-        private readonly Context _context;
+        private readonly NezaposleniDbContext _context;
 
-        public FirmaRepozitorijum(Context context)
+        public FirmaRepozitorijum(NezaposleniDbContext context)
         {
             _context = context;
         }
@@ -67,10 +67,11 @@ namespace EvidencijaNezaposlenih.Repozitorijum.Repozitorijumi
             throw new NotImplementedException();
         }
 
-        public async Firma DajPoNazivu(object Naziv)
+        public async Task<Firma> DajPoNazivu(object Naziv)
         {
             var naziv = (string)Naziv;
-            return await _context.Firme.FirstOrDefaultAsync(f => f.Naziv == naziv);
+            var data = await _context.Firme.FirstOrDefaultAsync(f => f.Naziv == naziv);
+            return data;
         }
     }
 }

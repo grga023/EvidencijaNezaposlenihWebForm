@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using EvidencijaNezaposlenih.Servisi.Interfejsi;
+using EvidencijaNezaposlenih.Servisi.Servisi;
+using System;
+using System.ComponentModel;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Web;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Web.Security;
-using System.Web.SessionState;
+using Unity;
 
 namespace EvidencijaNezaposlenih.Interfejs
 {
@@ -13,7 +14,17 @@ namespace EvidencijaNezaposlenih.Interfejs
     {
         void Application_Start(object sender, EventArgs e)
         {
-            // Code that runs on application startup
+            // Create Unity container builder
+            var containerBuilder = new UnityContainerBuilders();
+
+
+            // Register dependencies
+            var container = containerBuilder.RegisterDependencies().Build();
+
+            // Store the container in a static property or application state
+            Application["NezaposleniDbContext"] = container;
+
+            // Other application startup configurations
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }

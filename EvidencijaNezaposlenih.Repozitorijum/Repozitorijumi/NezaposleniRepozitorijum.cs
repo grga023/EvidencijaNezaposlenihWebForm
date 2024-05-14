@@ -13,7 +13,11 @@ namespace EvidencijaNezaposlenih.Repozitorijum.Repozitorijumi
 {
     public class NezaposleniRepozitorijum : INezaposleniRepozitorijum
     {
-        private readonly Context _context;
+        private readonly NezaposleniDbContext _context;
+        public NezaposleniRepozitorijum(NezaposleniDbContext context)
+        {
+            _context = context;
+        }
 
         public async Task<Nezaposleni> DajPoId(object PK)
         {

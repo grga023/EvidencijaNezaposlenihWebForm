@@ -5,14 +5,14 @@
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<EvidencijaNezaposlenih.Repozitorijum.Domeni.Context.Context>
+    internal sealed class Configuration : DbMigrationsConfiguration<EvidencijaNezaposlenih.Repozitorijum.Domeni.Context.NezaposleniDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(EvidencijaNezaposlenih.Repozitorijum.Domeni.Context.Context context)
+        protected override void Seed(EvidencijaNezaposlenih.Repozitorijum.Domeni.Context.NezaposleniDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

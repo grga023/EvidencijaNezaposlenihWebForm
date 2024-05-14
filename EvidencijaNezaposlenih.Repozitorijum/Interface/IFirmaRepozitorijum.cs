@@ -9,6 +9,6 @@ namespace EvidencijaNezaposlenih.Repozitorijum.Interface
 {
     public interface IFirmaRepozitorijum : IRepozitorijum<Firma>
     {
-        Firma DajPoNazivu(object Naziv);
+        Task<Firma> DajPoNazivu(object Naziv);
     }
 }

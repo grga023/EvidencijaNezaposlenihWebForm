@@ -85,7 +85,7 @@ namespace EvidencijaNezaposlenih.Servisi.Servisi
                     break;
                 else
                 {
-                    Firma firma = _firmaRepozitorijum.DajPoNazivu(item.Naziv);
+                    Firma firma = await _firmaRepozitorijum.DajPoNazivu(item.Naziv);
 
                     radniOdnosi.Add(new RadniOdnos
                     {
