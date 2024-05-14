@@ -10,13 +10,13 @@ namespace EvidencijaNezaposlenih.Repozitorijum.Domeni.DTO
     {
         public DateTime datumPocetka { get; private set; }
         public DateTime datumZavrsetka { get; private set; }
-        public int PIB {  get; private set; }
+        public string Naziv {  get; private set; }
 
-        public NezaposleniDodajFirma (DateTime datumPocetka, DateTime datumzavrsetka, int pIB)
+        public NezaposleniDodajFirma (DateTime datumPocetka, DateTime datumzavrsetka, string Naziv)
         {
             this.datumPocetka = datumPocetka;
             this.datumZavrsetka = datumzavrsetka;
-            PIB = pIB;
+            this.Naziv = Naziv;
         }
     }
 }

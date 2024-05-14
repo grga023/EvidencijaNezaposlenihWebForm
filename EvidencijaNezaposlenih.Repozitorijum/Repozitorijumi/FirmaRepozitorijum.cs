@@ -66,5 +66,11 @@ namespace EvidencijaNezaposlenih.Repozitorijum.Repozitorijumi
         {
             throw new NotImplementedException();
         }
+
+        public async Firma DajPoNazivu(object Naziv)
+        {
+            var naziv = (string)Naziv;
+            return await _context.Firme.FirstOrDefaultAsync(f => f.Naziv == naziv);
+        }
     }
 }

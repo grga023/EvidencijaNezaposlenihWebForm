@@ -13,10 +13,12 @@ namespace EvidencijaNezaposlenih.Servisi.Servisi
     public class NezaposleniServis : INezaposleniServis
     {
         private readonly INezaposleniRepozitorijum _nezaposleniRepozitorijum;
+        private readonly IFirmaRepozitorijum _firmaRepozitorijum;
 
-        public NezaposleniServis(INezaposleniRepozitorijum nezaposleniRepozitorijum)
+        public NezaposleniServis(INezaposleniRepozitorijum nezaposleniRepozitorijum, IFirmaRepozitorijum firmaRepozitorijum)
         {
             _nezaposleniRepozitorijum = nezaposleniRepozitorijum;
+            _firmaRepozitorijum = firmaRepozitorijum;
         }
 
         public Task<Nezaposleni> DajPoId(object PK)
@@ -79,13 +81,20 @@ namespace EvidencijaNezaposlenih.Servisi.Servisi
 
             foreach (var item in obj.NezaposleniDodajFirma)
             {
-                radniOdnosi.Add(new RadniOdnos
+                if (item.Naziv == "")
+                    break;
+                else
                 {
-                    ID_N = ID_N,
-                    PIB = item.PIB,
-                    DatumPocetka = item.datumPocetka,
-                    DatumZavrsetka = item.datumZavrsetka
-                });
+                    Firma firma = _firmaRepozitorijum.DajPoNazivu(item.Naziv);
+
+                    radniOdnosi.Add(new RadniOdnos
+                    {
+                        ID_N = ID_N,
+                        PIB = firma.PIB,
+                        DatumPocetka = item.datumPocetka,
+                        DatumZavrsetka = item.datumZavrsetka
+                    });
+                }
             }
 
             nezaposleniZaDodati.RadniOdnos = radniOdnosi;
